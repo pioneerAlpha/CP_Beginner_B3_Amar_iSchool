@@ -1,3 +1,4 @@
+problem link: https://csacademy.com/contest/archive/task/graph-game
 #include<bits/stdc++.h>
 #define N ((int)1e5 + 5)
 #define fastio ios_base::sync_with_stdio(false),cin.tie(NULL)
