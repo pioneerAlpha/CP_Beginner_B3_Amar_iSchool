@@ -27,7 +27,7 @@ void bfs(int src , int n)
         int a = que.front();
         que.pop();
         for(int b:vec[a]){
-            if(dis[b] != -1){
+            if(dis[b] == -1){
                 dis[b] = dis[a] + 1;
                 que.push(b);
             }
@@ -37,6 +37,7 @@ void bfs(int src , int n)
 
 int main()
 {
+    freopen("path.in","r",stdin);
 //    //cout<<(int)((1LL<<31)-1);
     fastio;
     int t , caseno = 1;
@@ -53,6 +54,7 @@ int main()
             vec[a].push_back(b);
         }
         bfs(src , n);
+//        for(int i = 1 ; i<=n ; i++) cout<<i<<" "<<dis[i]<<endl;
         int ans = 0;
         for(int i = 1 ; i<=m ; i++){
             int a = arr[i].a , b = arr[i].b , w = arr[i].w;
