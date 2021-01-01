@@ -1,4 +1,3 @@
-/// contest: graph intro
 #include<bits/stdc++.h>
 #define N ((int)1e5 + 5)
 #define MAXL ((ll)1e18 + 5)
@@ -45,13 +44,16 @@ int main()
     while(t--){
         int n , m;
         cin>>n>>m;
+        int chk = m;
         while(m--){
             int a , b;
             cin>>a>>b;
             vec[a].push_back(b);
             vec[b].push_back(a);
         }
-        dfs(1,0);
+        for(int i = 1 ; i<=n ; i++){
+            if(!vis[i]) dfs(i,0);
+        }
         vector < boom > ans;
         for(int i = 1 ; i <= n ; i++){
             while(edg[i].size() > 1){
@@ -62,10 +64,9 @@ int main()
                 ans.push_back({a,i,b});
             }
         }
-        priority_queue < pair < int , int > > leaf;
+        priority_queue < pair < pair < int , int > , int > > leaf;
         memset(vis,0,sizeof vis);
-        for(int i = 1 ; i<=n ; i++) if(deg[i] == 0) leaf.push({lev[i],i});
-        vis[1] = 1;
+        for(int i = 1 ; i<=n ; i++) if(deg[i] == 0) leaf.push({{lev[i],cnt[i]%2},i});
         while(!leaf.empty()){
             int a = leaf.top().second;
             leaf.pop();
@@ -101,13 +102,17 @@ int main()
                         ans.push_back({a,p,par[p]});
                         vis[p] = 1;
                         deg[par[p]]--;
+                        if(deg[par[p]] == 0){
+                            leaf.push({{lev[par[p]],cnt[par[p]]%2} , par[p]});
+                        }
                     }
                 }
             }
 
             deg[par[a]]--;
-            if(deg[par[a]] == 0) leaf.push({lev[par[a]] , par[a]});
+            if(deg[par[a]] == 0) leaf.push({{lev[par[a]],cnt[par[a]]%2} , par[a]});
         }
+//        assert(ans.size() == chk/2);
         cout<<ans.size()<<endl;
         for(auto p:ans) cout<<p.u<<" "<<p.v<<" "<<p.w<<endl;
     }
