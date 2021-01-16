@@ -9,14 +9,17 @@
 
 using namespace std;
 
-int arr[N];
+pair < int ,  int > arr[N];
 
 
 int main()
 {
     int n ;
     cin>>n;
-    for(int i = 1 ; i<=n ; i++) cin>>arr[i];
+    for(int i = 1 ; i<=n ; i++){
+        cin>>arr[i].first;
+        arr[i].second = i;
+    }
 
     sort(arr+1,arr+n+1);
 
@@ -28,10 +31,10 @@ int main()
         int lef = 1 , rig = n;
         while(lef < rig){
             int mid = (lef + rig)/2;
-            if(arr[mid] >= val) rig = mid;
+            if(arr[mid].first >= val) rig = mid;
             else lef = mid+1;
         }
-        if(arr[lef] == val) cout<<lef<<endl;
+        if(arr[lef].first == val) cout<<arr[lef].second<<endl;
         else cout<<-1<<endl;
     }
     return 0;
