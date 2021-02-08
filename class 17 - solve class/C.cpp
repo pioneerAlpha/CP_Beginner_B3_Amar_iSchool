@@ -2,7 +2,7 @@
 #define MAX ((int)2e9 + 5)
 #define MAXL ((ll)1e16 + 5)
 #define pi acos(-1)
-#define MOD ((int)1e8 + 7)
+#define MOD ((int)1e9 + 7)
 #define N ((int)1e5 + 5)
 #define eps (1e-8)
 #define fastio ios_base::sync_with_stdio(false),cin.tie(NULL)
