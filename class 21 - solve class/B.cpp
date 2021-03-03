@@ -104,7 +104,7 @@ int main()
         for(int i = 1 ; i<=n ; i++) cin>>arr[i];
         sparse(n,0);
         for(int i = 1 ; i<=n ; i++){
-            arr[i] = query(i,max(n,i+k-1),0);
+            arr[i] = query(i,min(n,i+k-1),0);
         }
         sparse(n,1);
         int q;
